@@ -1,4 +1,19 @@
-button {
-    background-color: lightcoral;
+.padding  {
     padding: 10px;
+}
+
+#buttonColor {
+    color: white;
+}
+
+.buttonDefaultColor {
+    background-color: lightcoral;
+}
+
+.buttonBlue {
+    background-color: blue;
+}
+
+.buttonRed {
+    background-color: red;
 }

@@ -4,66 +4,69 @@ blue on each button click
 does not work as expected
 */
 
-/* 
-button now toggles from default color in css to blue, but does not turn red. ???
-*/
-function changeBgColor(){
-    const button = document.querySelector("#buttonColor");
-    const colorNum = button.getAttribute("class");
+function changeBgColor() {
+  const button = document.querySelector("#buttonColor");
+  const color = button.getAttribute("class");
 
-    button.removeAttribute("style");
-
-    // console.log(typeof colorNum); //returns string
-
-    // console.log(colorNum === "1"); 
-
-    /* 
-    if the value of the class is 1 change the color of the button to blue
-    after the color is changed, change the value of class to 0.
+  /* 
+    if the text of the button is Red change the color of the button to blue
+    after the color is changed, change the text of the button to Blue.
     */
-    if(colorNum === "1"){
-        button.style.backgroundColor = ("blue");
-        console.log(button.getAttribute("style"));
-        // for debugging
-        console.log('when num is 1: ',button.getAttribute("class"));
-        button.setAttribute("class", "0");
-    }
+  if (color.includes("red")) {
+    // remove css selector to make button red
+    button.classList.remove("buttonRed");
+    // add css selector to make button blue
+    button.classList.add("buttonBlue");
+    // make text of button match color of button
+    button.innerText = "Blue";
+    // for debugging
+    // console.log(button.getAttribute("style"));
+    // console.log('when num is red: ',button.getAttribute("class"));
+    button.classList.remove("red");
+    button.classList.add("blue");
+  }
 
-    // console.log(colorNum === "0");
-    /* 
-    if the value of the class is 0 change the color of the button to red
-    after the color is changed, change the value of class to 1.
+  // console.log(colorNum === "0");
+  /* 
+    if the text of the button is Blue change the color of the button to red
+    after the color is changed, change the text of the button to Red.
     */
-    if(colorNum === "0"){
-        button.style.backGroundColor = ("red");
-        console.log(button.getAttribute("style"));
-        // for debugging
-        console.log('when num is 0: ',button.getAttribute("class"));
-        button.setAttribute("class","1");
-    }
-   
+  if (color.includes("blue")) {
+    // remove css selector to make button blue
+    button.classList.remove("buttonBlue");
+    // add css selector to make button red
+    button.classList.add("buttonRed");
+    // make text of button match color of button
+    button.innerText = "Red";
+    // for debugging
+    // console.log(button.getAttribute("style"));
+    // console.log('when class is blue: ',button.getAttribute("class"));
+    button.classList.remove("blue");
+    button.classList.add("red");
+  }
 }
 
 /* 
 expected function is to set an inital value of the class if the class starts with an empty string in html
 works as expected
 */
-function setColorNum(stringNum){
-    const button = document.querySelector("#button");
-    button.setAttribute("class",stringNum);
+function setColor(stringColor) {
+  const button = document.querySelector("#buttonColor");
+  button.innerText = stringColor;
 }
 
 /*
  main function, calls all other functions
  */
-function main(){
-    // setColorNum(0);
-    changeBgColor();
-}
-
+function main() {
 /* 
 event listener for the button
 */
 const button = document.querySelector("#buttonColor");
-console.log(button.getAttribute("class"));
 button.addEventListener("click", changeBgColor);
+}
+
+/* 
+makes sure DOM is fully loaded before running JS
+*/
+window.addEventListener("DOMContentLoaded",main);
